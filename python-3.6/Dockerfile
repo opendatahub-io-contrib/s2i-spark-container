@@ -1,4 +1,4 @@
-FROM centos/python-36-centos7
+FROM quay.io/vpavlin/python-36-ubi7:ubi
 
 USER root
 RUN yum -y install java-1.8.0-openjdk maven &&\
