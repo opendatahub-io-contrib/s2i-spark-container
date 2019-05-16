@@ -1,4 +1,4 @@
-FROM centos/python-27-centos7
+FROM registry.access.redhat.com/ubi7/python-27
 
 USER root
 RUN yum -y install java-1.8.0-openjdk pandoc &&\
