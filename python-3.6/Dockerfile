@@ -1,4 +1,4 @@
-FROM registry.redhat.io/ubi7/python-36
+FROM registry.access.redhat.com/ubi7/python-36
 
 USER root
 RUN yum -y install java-1.8.0-openjdk maven &&\
