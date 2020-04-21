@@ -1,0 +1,51 @@
+---
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  labels:
+    build: s2i-spark-container
+  name: s2i-spark-container
+spec:
+  lookupPolicy:
+    local: true
+
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  labels:
+    build: s2i-spark-container
+  name: s2i-spark-container
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: s2i-spark-container:2.4.5
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    git:
+      uri: https://github.com/vpavlin/s2i-spark-container.git
+      ref: feature/spark-2.4
+    contextDir: python-3.6
+    type: Git
+  strategy:
+    dockerStrategy:
+      from:
+        kind: DockerImage
+        name: registry.access.redhat.com/ubi8/python-36
+    type: Docker
+  successfulBuildsHistoryLimit: 5
+  triggers:
+  - github:
+      secret: -z6NJg1P6H1zVLpIq6rx
+    type: GitHub
+  - generic:
+      secret: CVGyl4gxVcyYoB8Znsyh
+    type: Generic
+  - type: ConfigChange
+  - type: ImageChange
+status:
