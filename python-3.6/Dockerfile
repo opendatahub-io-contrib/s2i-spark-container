@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi7/python-36
+FROM quay.io/thoth-station/s2i-thoth-ubi8-py36:v0.15.0
 
 ARG PKG_ROOT=/opt/app-root
 ARG SPARK_VERSION=2.4.5
